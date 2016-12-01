@@ -44,8 +44,16 @@ var HelloWord = React.createClass({
       <div>
         <span>value {this.state.value}</span>
         <h1>hellow {greeting}</h1>
+        <button onClick={this._addByOne}>Click me</button>
       </div>
     );
+  },
+
+  // custom functions
+  _addByOne: function () {
+    this.setState({
+      value: (this.state.value + 1)
+    });
   }
 });
 
