@@ -1,13 +1,15 @@
 import React from 'react';
 
 import ContactComponent from './contactComponent';
+import TaskComponent from './taskComponent';
 
 class ContactsListComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       search: '',
-      contacts: props.contacts
+      contacts: props.contacts,
+      tasks: props.tasks
     };
   }
 
@@ -28,10 +30,19 @@ class ContactsListComponent extends React.Component {
           <br/>
           <input type="submit" value="Add" />
         </form>
+        <h2>Componente without states (const)</h2>
         <ul>
           {
             filteredContacts.map((contact, index)=>{
               return <ContactComponent contact={contact} key={contact.id}/>
+            })
+          }
+        </ul>
+        <h2>TaskComponent with states</h2>
+        <ul>
+          {
+            this.state.tasks.map((task, index)=>{
+              return <TaskComponent task={task} key={task.id} onDeleteTask={this.onDeleteTask.bind(this)}/>
             })
           }
         </ul>
@@ -58,6 +69,15 @@ class ContactsListComponent extends React.Component {
     });
     this.refs.name.value = '';
     this.refs.phone.value = '';
+  }
+
+  onDeleteTask(task) {
+    let updateState = this.state.tasks.filter(
+      (val, index) => { return task !== val;}
+    );
+    this.setState({
+      tasks: updateState
+    });
   }
 }
 
