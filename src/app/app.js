@@ -19,6 +19,11 @@ let contacts = [{
   name: 'Jeff',
   phone: '222 222 5555'
 }
+];
+let tasks = [
+  { id: 1, name: 'eat a lot', time: '1 hour' },
+  { id: 2,name: 'listen music', time: '2 hours' },
+  { id: 3,name: 'watch tv', time: '3 hours' }
 ]
 
 class AppComponent extends React.Component {
@@ -26,10 +31,10 @@ class AppComponent extends React.Component {
     return (
       <div>
         <h1>Contacts list</h1>
-        <ContactsListComponent contacts={this.props.contacts}/>
+        <ContactsListComponent contacts={this.props.contacts} tasks={this.props.tasks}/>
       </div>
     )
   }
 }
 
-ReactDOM.render(<AppComponent contacts={contacts}/>, document.getElementById('es6'));
+ReactDOM.render(<AppComponent contacts={contacts} tasks={tasks} />, document.getElementById('es6'));
